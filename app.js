@@ -6,13 +6,15 @@ var app = require('http').createServer(handler)
 app.listen(5000); // Use local port 5000
 
 var PythonShell = require('python-shell');
-var pyshell = new PythonShell('Motor2.py');
+var pyshell = new PythonShell('motor.py');
 
 var PololuMaestro = require("node-pololumaestro");
 var maestro = new PololuMaestro("/dev/ttyACM0");
 var yaw = 1200;
 var pitch = 1800;
 var direction = "Forward";
+var size = "none"
+var target = [1200,2300]
 //wait until connection is ready
 maestro.on("ready", function() { // Set servo speed and some servo position 
  console.log("connection made");
@@ -33,6 +35,10 @@ maestro.on("ready", function() { // Set servo speed and some servo position
  maestro.setTarget(12, 1200); 
  maestro.setTarget(13, 1800);
 });
+
+ maestro.setTarget(6,1200);
+ maestro.setTarget(6,2300);
+
 // Http handler function
 function handler (req, res) {
 
@@ -127,6 +133,22 @@ function Idle(){
 function Motor(){
   pyshell.send(direction);
 }
+function Motor_LR(){
+  maestro.setTarget(6,1200);
+  maestro.setTarget(6,2300);
+  if (size == 'L'){
+    target[0] += 100;
+    target[1] -= 100;
+    maestro.setTarget(6,target[0]);
+    maestro.setTarget(9,target[1]);
+  }
+  else{
+    target[0] -= 100;
+    target[1] += 100;
+    maestro.setTarget(6,target[0]);
+    maestro.setTarget(9,target[1]);
+  }
+}
 
 /*-------------------------------------------------------------------Handling Request----------------------------------------------------------------*/
 // Web Socket Connection
@@ -196,10 +218,15 @@ io.sockets.on('connection', function (socket) {
       direction = "Backward"
       Motor(direction);  
   });
-   socket.on('MS', function(data) {
-      direction = "Stop"
-      Motor(direction);  
+   socket.on('ML', function(data) {
+      direction = "Left";
+      Motor(direction);
+         });
+   socket.on('MR', function(data) {
+      direction = "Right";
+      Motor(direction);
   });
+   
 
    
 
