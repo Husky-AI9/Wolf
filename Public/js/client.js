@@ -53,12 +53,7 @@ if(key == 82){ // r
       $("#walking").css("background-color","#3498DB","opacity","50%");
       socket.emit('Rest');    
 }
-if(key == 73){ // i
-      $("#idle").css("background-color","#81CFE0","opacity","50%");
-      $("#rest").css("background-color","#3498DB","opacity","50%");
-      $("#walking").css("background-color","#3498DB","opacity","50%");
-         socket.emit('Idle');
-}
+
 if(key == 87){ // w 
     $("#d-up").css("background-color","#404d4d","opacity","50%"); // hover effect 
     $("#walking").css("background-color","#81CFE0","opacity","50%");
@@ -83,6 +78,19 @@ if(key == 83){ // s
     hoveroff();
       socket.emit('B');
     }*/
+if(key == 73){ // i
+      $(".idle").css("background-color","#e74c3c","opacity","100%");
+      $(".rest").css("background-color","#222D32","opacity","100%");
+      $(".walking").css("background-color","#3498DB","opacity","50%");
+         socket.emit('Idle');
+}
+if(key == 82){ // r
+      $(".rest").css("background-color","#e74c3c","opacity","100%");
+      $(".idle").css("background-color","#222D32","opacity","100%");
+      $(".walking").css("background-color","#3498DB","opacity","50%");
+      socket.emit('Rest');    
+}
+
 if(key == 38){//up key
     socket.emit('MF');
     }

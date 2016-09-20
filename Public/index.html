@@ -18,11 +18,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="https://rawgit.com/HackHusky/Wolf/master/Public/dist/css/AdminLTE.css">
-  <link rel="stylesheet" href="https://rawgit.com/HackHusky/Wolf/master/Public/dist/css/Quadruped.css"> 
+  <link rel="stylesheet" href="dist/css/Quadruped.css"> 
+
+ <!-- <link rel="stylesheet" href="https://rawgit.com/HackHusky/Wolf/master/Public/dist/css/Quadruped.css"> -->
   <link rel="stylesheet" href="https://rawgit.com/HackHusky/Wolf/master/Public/dist/css/loader.css">
   <link rel="stylesheet" href="https://rawgit.com/HackHusky/Wolf/master/Public/dist/css/skins/skin-red.min.css">
 
     <!--Control Script  -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
   <script src="js/socket.io.js"></script>
   <script src="js/client.js"></script>
   
@@ -53,7 +56,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a  class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>W</b>olf</span>
       <!-- logo for regular state and mobile devices -->
@@ -86,8 +89,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <ul class="sidebar-menu">
         <li class="header"></li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-hotel"></i> <span>REST MODE</span></a></li>
-        <li><a href="#"><i class="fa fa-clock-o"></i> <span>IDLE MODE</span></a></li>
+        <li class="rest"><a href="#"><i class="fa fa-hotel"></i> <span>REST MODE</span></a></li>
+        <li class="idle"><a href="#"><i class="fa fa-clock-o"></i> <span>IDLE MODE</span></a></li>
         <li><a href="#"><i class="fa fa-cogs"></i> <span>GAIT MODE</span></a></li>
         <li><a href="#"><i class="fa fa-car"></i> <span>ROVER MODE</span></a></li>
         <li class="treeview">
