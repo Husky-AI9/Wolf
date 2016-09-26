@@ -78,16 +78,27 @@ if(key == 83){ // s
     hoveroff();
       socket.emit('B');
     }*/
+if(key == 32){ // spacebar
+      $(".rover").css("background-color","#e74c3c","opacity","100%");
+      $(".idle").css("background-color","#222D32","opacity","100%");
+      $(".rest").css("background-color","#222D32","opacity","100%");
+      $(".walking").css("background-color","#3498DB","opacity","50%");
+         socket.emit('Rover');
+}
 if(key == 73){ // i
       $(".idle").css("background-color","#e74c3c","opacity","100%");
       $(".rest").css("background-color","#222D32","opacity","100%");
       $(".walking").css("background-color","#3498DB","opacity","50%");
+      $(".rover").css("background-color","#222D32","opacity","100%");
+
          socket.emit('Idle');
 }
 if(key == 82){ // r
       $(".rest").css("background-color","#e74c3c","opacity","100%");
       $(".idle").css("background-color","#222D32","opacity","100%");
       $(".walking").css("background-color","#3498DB","opacity","50%");
+      $(".rover").css("background-color","#222D32","opacity","100%");
+
       socket.emit('Rest');    
 }
 
