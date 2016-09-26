@@ -4,40 +4,15 @@ var app = require('http').createServer(handler)
   , fs = require('fs')
 
 app.listen(5000); // Use local port 5000
-
+//python script
 var PythonShell = require('python-shell');
 var pyshell = new PythonShell('motor.py');
-
-var PololuMaestro = require("node-pololumaestro");
-var maestro = new PololuMaestro("/dev/ttyACM0");
-var yaw = 1200;
-var pitch = 1800;
+//servo class
+var servo = require('./public/js/Servo.js');
+var Servo = new servo();
+//
 var direction = "Forward";
 var size = "none"
-var target = [1200,2300]
-//wait until connection is ready
-maestro.on("ready", function() { // Set servo speed and some servo position 
- console.log("connection made");
- maestro.setSpeed(0, 60);
- maestro.setSpeed(1, 60);
- maestro.setSpeed(2, 60);
- maestro.setSpeed(3, 60);
- maestro.setSpeed(4, 60);
- maestro.setSpeed(5, 60);
- maestro.setSpeed(6, 60);
- maestro.setSpeed(7, 60);
- maestro.setSpeed(8, 60);
- maestro.setSpeed(9, 60);
- maestro.setSpeed(10, 60);
- maestro.setSpeed(11, 60);
- maestro.setSpeed(12, 60);
- maestro.setSpeed(13, 60);
- maestro.setTarget(12, 1200); 
- maestro.setTarget(13, 1800);
-});
-
- maestro.setTarget(6,1200);
- maestro.setTarget(6,2300);
 
 // Http handler function
 function handler (req, res) {
@@ -76,78 +51,12 @@ function handler (req, res) {
         res.end("Error: 404 - File not found.");
     }
 }
-/*--------------------------------------------------Servo Position Mapping -----------------------------------------------------------------*/
-
-
-
-/*-----------------------------------------------------------------Servo Function----------------------------------------------------------------*/
-function CameraRight(){
-    yaw = yaw+100;
-    maestro.setTarget(12, yaw); 
-}
-function CameraLeft(){
-    yaw = yaw-100;
-    maestro.setTarget(12, yaw); 
-}
-function CameraUp(){
-    pitch = pitch+100;
-    maestro.setTarget(13, pitch); 
-}
-function CameraDown(){
-    pitch = pitch-100;
-    maestro.setTarget(13, pitch); 
-}
-function Rest(){
-    //Bot Rest postion
-    maestro.setTarget(0, 1900);
-    maestro.setTarget(1, 700); 
-    maestro.setTarget(2, 800);
-    maestro.setTarget(3, 1350); 
-    maestro.setTarget(4, 2300); 
-    maestro.setTarget(5, 2250);
-    maestro.setTarget(6, 1300);  
-    maestro.setTarget(7, 1800); 
-    maestro.setTarget(8, 2300);
-    maestro.setTarget(9, 1700);
-    maestro.setTarget(10, 1200); 
-    maestro.setTarget(11, 1300);
-}     
-function Idle(){
-    maestro.setTarget(0, 1611);
-    maestro.setTarget(1, 950); 
-    maestro.setTarget(2, 2300);
-    maestro.setTarget(3, 1552); 
-    maestro.setTarget(4, 800); 
-    maestro.setTarget(5, 1700);
-    maestro.setTarget(6, 1500);  
-    maestro.setTarget(7, 2150); 
-    maestro.setTarget(8, 1300);
-    maestro.setTarget(9, 1622);
-    maestro.setTarget(10, 1570); 
-    maestro.setTarget(11, 2280); 
-}
 
 
 /*------------------------------------------------------------------Motor Function ------------------------------------------------------------------*/
 
 function Motor(){
   pyshell.send(direction);
-}
-function Motor_LR(){
-  maestro.setTarget(6,1200);
-  maestro.setTarget(6,2300);
-  if (size == 'L'){
-    target[0] += 100;
-    target[1] -= 100;
-    maestro.setTarget(6,target[0]);
-    maestro.setTarget(9,target[1]);
-  }
-  else{
-    target[0] -= 100;
-    target[1] += 100;
-    maestro.setTarget(6,target[0]);
-    maestro.setTarget(9,target[1]);
-  }
 }
 
 /*-------------------------------------------------------------------Handling Request----------------------------------------------------------------*/
@@ -162,9 +71,16 @@ io.sockets.on('connection', function (socket) {
   });
   socket.on('Idle', function(data) {
       console.log("Idle Position");
-      Idle();
+      Servo.homeSERVO();
       setTimeout(function(){
-          socket.emit("Idle");
+          socket.emit("Idle Mode Enable");
+      }, 1000);
+  });
+  socket.on('Rover', function(data) {
+      console.log("Rover Position");
+      Servo.roverSERVO();
+      setTimeout(function(){
+          socket.emit("Rover Mode Enable");
       }, 1000);
   });
   socket.on('F', function(data) {
@@ -226,8 +142,14 @@ io.sockets.on('connection', function (socket) {
       direction = "Right";
       Motor(direction);
   });
-   
-
+    socket.on('SY', function(data) {
+     sideway = 'yes';
+     Sideway();
+  });
+     socket.on('SN', function(data) {
+     sideway = 'no';
+     Sideway();
+  });
    
 
 /* setInterval(function(){

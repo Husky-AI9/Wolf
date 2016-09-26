@@ -14,10 +14,10 @@ myMotor1 = mh.getMotor(1)
 myMotor2 = mh.getMotor(2)
 myMotor3 = mh.getMotor(3)
 myMotor4 = mh.getMotor(4)
-myMotor1.setSpeed(70)
-myMotor2.setSpeed(70)
-myMotor3.setSpeed(70)
-myMotor4.setSpeed(70)
+myMotor1.setSpeed(220)
+myMotor2.setSpeed(220)
+myMotor3.setSpeed(220)
+myMotor4.setSpeed(220)
 
 while end!=1: 
  direction = sys.stdin.readline().rstrip('\n')
@@ -31,6 +31,8 @@ while end!=1:
  	myMotor2.run(Adafruit_MotorHAT.RELEASE)
  	myMotor3.run(Adafruit_MotorHAT.RELEASE)
  	myMotor4.run(Adafruit_MotorHAT.RELEASE)
+ 	direction = "Stop"
+
  elif direction == "Backward" :
  	myMotor1.run(Adafruit_MotorHAT.BACKWARD)
  	myMotor2.run(Adafruit_MotorHAT.BACKWARD)
@@ -41,6 +43,8 @@ while end!=1:
  	myMotor2.run(Adafruit_MotorHAT.RELEASE)
  	myMotor3.run(Adafruit_MotorHAT.RELEASE)
  	myMotor4.run(Adafruit_MotorHAT.RELEASE)
+ 	direction = "Stop"
+
  elif direction == "Left" :
  	myMotor1.run(Adafruit_MotorHAT.BACKWARD)
  	myMotor2.run(Adafruit_MotorHAT.FORWARD)
@@ -51,7 +55,9 @@ while end!=1:
  	myMotor2.run(Adafruit_MotorHAT.RELEASE)
  	myMotor3.run(Adafruit_MotorHAT.RELEASE)
  	myMotor4.run(Adafruit_MotorHAT.RELEASE)
- else :
+ 	direction = "Stop"
+
+ elif direction == "Right" :
  	myMotor1.run(Adafruit_MotorHAT.FORWARD)
  	myMotor2.run(Adafruit_MotorHAT.BACKWARD)
  	myMotor3.run(Adafruit_MotorHAT.FORWARD)
@@ -61,7 +67,13 @@ while end!=1:
  	myMotor2.run(Adafruit_MotorHAT.RELEASE)
  	myMotor3.run(Adafruit_MotorHAT.RELEASE)
  	myMotor4.run(Adafruit_MotorHAT.RELEASE)
+ 	direction = "Stop"
 
+ else : 
+ 	myMotor1.run(Adafruit_MotorHAT.RELEASE)
+ 	myMotor2.run(Adafruit_MotorHAT.RELEASE)
+ 	myMotor3.run(Adafruit_MotorHAT.RELEASE)
+ 	myMotor4.run(Adafruit_MotorHAT.RELEASE)
 
 
 
