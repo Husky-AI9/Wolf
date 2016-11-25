@@ -97,6 +97,7 @@ body {
 .right-side {
   min-height: 100%;
   z-index: 800;
+  background-color: #ecf0f5;
 }
 .main-footer {
   background: #fff;
