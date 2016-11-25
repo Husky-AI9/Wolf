@@ -19,6 +19,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="https://rawgit.com/HackHusky/Wolf/master/Public/dist/css/AdminLTE.css">
   <link rel="stylesheet" href="dist/css/Quadruped.css"> 
+  <link rel="stylesheet" href="dist/css/Orientation.css">
+  <link rel="stylesheet" href="dist/css/Lidar.css"> 
+ 
+
 
  <!-- <link rel="stylesheet" href="https://rawgit.com/HackHusky/Wolf/master/Public/dist/css/Quadruped.css"> -->
   <link rel="stylesheet" href="https://rawgit.com/HackHusky/Wolf/master/Public/dist/css/loader.css">
@@ -32,9 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 <body class="hold-transition skin-red sidebar-mini">
-
   <!-- Pre Loader -->
-
 <div id="loading">
 <div id="loading-center">
 <div id="loading-center-absolute">
@@ -115,9 +117,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Content Header (Page header) -->
     <section class="content-header">
      <div class = "camera">
-       <img src="http://raspberrypi:8080/stream/video.mjpeg" class="stream">
+        <div class="lidar"> 
+          <img src="http://raspberrypi:8080/stream/video.mjpeg" class="stream">
+        </div>
+        <div class='distance'>0 cm</div>
+      
      </div>
-     <div class = "sensor"> </div>
+    <div class="Orientation">
+      <div class='form1'></div>
+      <div class='pitch-container'>
+        <div class='form3'></div>
+        <div class="pitch"></div>
+      </div> 
+      <div class='form2'></div></div>
     </section>
 
     <!-- Main content -->
@@ -136,6 +148,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script src="dist/js/loader.js"></script>
 
+<script src="dist/js/Orientation.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

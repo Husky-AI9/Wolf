@@ -1,0 +1,85 @@
+.form1{
+	width: 20%;
+	height: 12%;
+	float: left;
+	background: white;
+	margin-top: 35%;
+	border-radius: 0px 20px 20px 0px;
+	opacity: .5;
+	position: relative;
+	line-height: normal;
+	font-size: 20px;
+}
+.form2{
+
+	width: 20%;
+	height: 12%;
+	float: right;
+	margin-top: 35%;
+	background: white;
+	border-radius: 20px 0px 0px 20px;
+	opacity: .5;
+	font-size: 20px;
+}
+.pitch{
+	width: 60%;
+	height: 40%;
+	background: url(Pitch.png) center no-repeat ;
+ 	vertical-align:center;
+ 	position: absolute;
+ 	margin: 24.5% 20%;
+
+}
+ .Orientation
+{
+	width: 10em;
+	height: 8em;
+	font-size: 2em;
+	text-align: center;
+	margin: 0 auto;
+	border: 2px solid #666;
+	border-radius: 7px;
+	position: relative;
+	overflow: hidden;
+	z-index: 999;
+
+}
+.Orientation:before
+{
+	content: "";
+	position: absolute;
+	width: 200%;
+	height: 200%;
+	top: -50%;
+	left: -50%;
+	z-index: -1;
+	background: url(Background.png) center ;
+	-webkit-transition: all 1s;
+	-moz-transition: all 1s;
+	-ms-transition: all 1s
+	-o-transition: all 1s;
+	transition: all 1s;
+}
+.transform:before {
+    -webkit-transform: rotate(-30deg);
+	-moz-transform: rotate(-30deg);
+	-ms-transform: rotate(-30deg);
+	-o-transform: rotate(-30deg);
+	transform: rotate(-30deg);
+}
+.form3{
+	width: 40%;
+	height: 12%;
+	background: white;
+	margin-left: 30%;
+	border-radius: 0px 0px 20px 20px;
+	opacity: .5;
+	font-size: 20px;
+}
+.pitch-container{
+	width: 60%;
+	height: 100%;
+	vertical-align:center;
+ 	position: absolute;
+ 	margin-left: 20%;
+}
