@@ -3,6 +3,8 @@
 	height:450px;
 	background-color:#2c3e50;
 	float: left;
+	position:relative;
+    display:inline-block;
 }
 .sensor{
 	width:28%;
