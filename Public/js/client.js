@@ -34,16 +34,16 @@ $(document).keydown(function(e){ // pressing key
 
    var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
 
-if(key == 111){ // r
+if(key == 79){ // O
         socket.emit('CU');
     }
-if(key == 108){ // r
+if(key == 76){ // L
         socket.emit('CD');
     }
-if(key== 107){ // r
+if(key== 75){ // K
         socket.emit('CR');
     }
-if(key == 59){ // r
+if(key == 186){ // 
         socket.emit('CL');
     }
 /*    

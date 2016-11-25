@@ -14,6 +14,8 @@ var Servo = new servo();
 var direction = "Forward";
 var size = "none"
 
+Servo.initCameraSERVO();
+
 // Http handler function
 function handler (req, res) {
 
@@ -109,23 +111,33 @@ io.sockets.on('connection', function (socket) {
       setTimeout(function(){
           socket.emit("R");
       }, 1000);
+
+/*---------------------------------------------------------------------------------------------------------*/
   });
   socket.on('CR', function(data) {
       console.log("CameraRight");
-      CameraRight();   
+      Servo.RightCameraSERVO();
+
   });
    socket.on('CL', function(data) {
       console.log("CameraLeft");
-      CameraLeft();   
+      Servo.LeftCameraSERVO();
   });
     socket.on('CU', function(data) {
       console.log("CameraUp");
-      CameraUp();   
+      Servo.UpCameraSERVO();
+
   });
      socket.on('CD', function(data) {
       console.log("CameraDown");
-      CameraDown();   
+      Servo.DownCameraSERVO();
+
   });
+
+/*---------------------------------------------------------------------------------------------------------*/
+
+
+
   socket.on('MF', function(data) {
       direction = "Forward";
       Motor(direction);
