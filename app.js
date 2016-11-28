@@ -4,6 +4,13 @@ var app = require('http').createServer(handler)
   , fs = require('fs')
 
 app.listen(5000); // Use local port 5000
+//Orientation
+var mpu = require('./public/js/MPU9250.js');
+var MPU = new mpu();
+MPU.initMPU9250();
+//Lidar
+var lidar = require('./public/js/LIDAR.js');
+var LIDAR = new lidar();
 //python script
 var PythonShell = require('python-shell');
 var pyshell = new PythonShell('motor.py');
@@ -163,10 +170,21 @@ io.sockets.on('connection', function (socket) {
      Sideway();
   });
    
+  /*---------------------------------------------------------------------------------------------------------*/
 
-/* setInterval(function(){
+ setInterval(function(){
     //console.log("sending compass info");
-    compass();
-    socket.emit('compass', bearing);   
-  },500); */
+    var Orientation = MPU.Kalman_filter();
+    //console.log(Orientation.roll);
+    socket.emit('Orientation', Orientation);   
+  },500); 
+
+setInterval(function(){
+    //console.log("sending compass info");
+    var Distance = LIDAR.Distance();
+    socket.emit('Lidar', Distance);   
+  },300); 
+
+ 
 });
+

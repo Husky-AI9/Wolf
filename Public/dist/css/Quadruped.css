@@ -6,10 +6,32 @@
 	position:relative;
     display:inline-block;
 }
-.sensor{
-	width:28%;
-	height:450px;
+.GPS{
+	width:24%;
+	height:215px;
+	margin-right: 3%;
+	margin-top: 1%;
 	background-color: #2c3e50;
 	float:right;
 	border-radius: 10px;
 }
+.Control{
+	width: 97%;
+	height: 200px;
+	background-color: red;
+	margin-top: 20%;
+	background-color: #2c3e50;
+	border-radius: 10px;
+
+}
+
+.map{
+	width: 100%;
+	height: 100%;
+	-webkit-transform: translate3d(0px, 0px, 0px);
+	-webkit-mask-image: -webkit-radial-gradient(white, black);
+	border-radius: 10px;
+	border-style: solid;
+	border-color:  #666;
+}
+

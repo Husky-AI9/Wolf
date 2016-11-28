@@ -24,6 +24,7 @@ socket.on('R', function (data) {
     console.log("Feedback: Right command received");
 });
 
+
 function hoveroff(){
      $("#idle").css("background-color","#3498DB","opacity","50%");
      $("#rest").css("background-color","#3498DB","opacity","50%");
